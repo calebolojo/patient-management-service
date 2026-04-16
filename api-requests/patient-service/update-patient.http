@@ -1,0 +1,15 @@
+### Updates and existing entity
+PUT http://localhost:4000/patients/123e4567-e89b-12d3-a456-426614174000
+Content-Type: application/json
+
+
+
+{
+  "name": "John Doe UPDATED",
+  "email": "johndoecaleb@gmail.com",
+  "address": "123 main street",
+  "dateOfBirth": "1999-05-01",
+  "registeredDate": "2026-04-02"
+}
+
+###
