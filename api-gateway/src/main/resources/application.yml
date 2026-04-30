@@ -1,7 +1,11 @@
 server:
   port: 4004 # Gateway listens on port 4004
 
+
+
 spring:
+  main:
+    allow-circular-references: true
   cloud:
     gateway:
       server:
@@ -21,6 +25,7 @@ spring:
                 - Path=/api/patients/**
               filters:
                 - StripPrefix=1
+                - JwtValidation
 
             # Route for /api/docs/patients to patient-service /v3/api-docs
             ## REST_CLIENT -> http://localhost:4004/
@@ -31,6 +36,14 @@ spring:
                 - Path=/api-docs/patients
               filters:
                 - RewritePath=/api-docs/patients, /v3/api-docs
+
+
+            - id: api-docs-auth-route
+              uri: http://auth-service:4005
+              predicates:
+                - Path=/api-docs/auth
+              filters:
+                - RewritePath=/api-docs/auth,/v3/api-docs
 
 
 
